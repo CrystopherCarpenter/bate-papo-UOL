@@ -1,0 +1,14 @@
+body{
+    padding-left: 50px;
+}
+.todos{
+    background-color: red;
+}
+
+.status{
+    background-color:  blue;
+}
+
+.privado{
+    background-color: yellow;
+}
