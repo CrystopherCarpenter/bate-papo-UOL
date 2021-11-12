@@ -4,7 +4,7 @@ let intervalMessages;
 let msgRef;                     //Mensagem de referência para a impressão das mensagens na tela
 
 //function acessar() {
-const nome = { name: `Alrimar` };
+const nome = { name: `Cansei desses bugs já` };
 //var nome = { name: `${document.querySelector(`.inserir-nome`).value}` };
 
 const promiseNome = axios.post(`https://mock-api.driven.com.br/api/v4/uol/participants`, nome);
@@ -82,8 +82,8 @@ function printMessages(resposta) {
 
                         document.querySelector(`.mensagens`).innerHTML += `
         
-                            <div class="status"><span class="time">(${resposta.data[j].time})</span>
-                            <span class="nome"> ${resposta.data[j].from}</span>
+                            <div class="status"><div><span class="time">(${resposta.data[j].time})</span>
+                            <span class="nome"> ${resposta.data[j].from}</span></div>
                             <span class="texto"> ${resposta.data[j].text}</span></div>`;
 
                         document.querySelector(`.mensagens`).scrollIntoView(false)
@@ -92,8 +92,8 @@ function printMessages(resposta) {
 
                         document.querySelector(`.mensagens`).innerHTML += `
 
-                            <div class="todos"><span class="time">(${resposta.data[j].time})</span>
-                            <span class="nome"> ${resposta.data[j].from}</span>
+                            <div class="todos"><div><span class="time">(${resposta.data[j].time})</span>
+                            <span class="nome"> ${resposta.data[j].from}</span></div>
                             <span class="para"> para</span>
                             <span class="nome"> Todos:</span>
                             <span class="texto"> ${resposta.data[j].text}</span></div> `;
@@ -106,8 +106,8 @@ function printMessages(resposta) {
 
                     document.querySelector(`.mensagens`).innerHTML += `
         
-                        <div class="privado"><span class="time">(${resposta.data[j].time})</span>
-                        <span class="nome"> ${resposta.data[j].from}</span>
+                        <div class="privado"><div><span class="time">(${resposta.data[j].time})</span>
+                        <span class="nome"> ${resposta.data[j].from}</span></div>
                         <span class="para"> reservadamente para</span>
                         <span class="nome"> ${resposta.data[j].to}:</span>
                         <span class="texto"> ${resposta.data[j].text}</span></div> `;
