@@ -22,23 +22,29 @@
 </head>
 
 <body>
+    <header>
+        <img src="assets/logo.png" />
+        <ion-icon name="people-sharp"></ion-icon>
 
-    <input type="text" class="mensagem" placeholder="Escreva aqui..." />
-    <button onclick="enviarMensagem()">
-        <ion-icon name="paper-plane-outline"></ion-icon>
-    </button>
+    </header>
+
 
     <div class="mensagens"></div>
 
-    <ion-icon name="people-sharp"></ion-icon>
+    <footer>
+        <div><input class="mensagem" placeholder="Escreva aqui..." />
+            <p class="esconder">nome da gatinha que quer TC<ion-icon name="person-circle"></ion-icon>
 
+                <ion-icon name="lock-open"></ion-icon>
 
+                <ion-icon name="lock-closed"></ion-icon>
+            </p>
 
-    <ion-icon name="person-circle"></ion-icon>
-
-    <ion-icon name="lock-open"></ion-icon>
-
-    <ion-icon name="lock-closed"></ion-icon>
+        </div>
+        <button class="enviar" onclick="enviarMensagem()">
+            <ion-icon name="paper-plane-outline"></ion-icon>
+        </button>
+    </footer>
 
     <script src="https://unpkg.com/ionicons@5.4.0/dist/ionicons.js"></script>
 

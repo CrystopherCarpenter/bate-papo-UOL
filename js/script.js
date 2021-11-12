@@ -4,7 +4,7 @@ let intervalMessages;
 let msgRef;                     //Mensagem de referência para a impressão das mensagens na tela
 
 //function acessar() {
-const nome = { name: `John Wick` };
+const nome = { name: `Alrimar` };
 //var nome = { name: `${document.querySelector(`.inserir-nome`).value}` };
 
 const promiseNome = axios.post(`https://mock-api.driven.com.br/api/v4/uol/participants`, nome);
@@ -20,7 +20,7 @@ function Acesso(resposta) {
 }
 
 function erroAcesso(resposta) {
-    console.log(resposta.response);
+    console.log(resposta.response.status);
 
 }
 
@@ -68,23 +68,51 @@ function messages() {
 
 function printMessages(resposta) {
 
+    console.log(resposta.data)
 
     for (let i = 0; i < resposta.data.length; i++) {
+
         if (msgRef.from === resposta.data[i].from && msgRef.to === resposta.data[i].to && msgRef.text === resposta.data[i].text && msgRef.type === resposta.data[i].type && msgRef.time === resposta.data[i].time) {
+
             for (let j = (i + 1); j < resposta.data.length; j++) {
+
                 if ((resposta.data[j].to) === `Todos`) {
+
                     if (resposta.data[j].type === 'status') {
-                        console.log(`estou no if status`)
+
                         document.querySelector(`.mensagens`).innerHTML += `
-                            <div class="status">${resposta.data[j].text}</div>`;
+        
+                            <div class="status"><span class="time">(${resposta.data[j].time})</span>
+                            <span class="nome"> ${resposta.data[j].from}</span>
+                            <span class="texto"> ${resposta.data[j].text}</span></div>`;
+
+                        document.querySelector(`.mensagens`).scrollIntoView(false)
+
                     } else if (resposta.data[j].type === 'message') {
-                        console.log(`estou no if message`)
+
                         document.querySelector(`.mensagens`).innerHTML += `
-                            <div class="todos">${resposta.data[j].text}</div>`;
+
+                            <div class="todos"><span class="time">(${resposta.data[j].time})</span>
+                            <span class="nome"> ${resposta.data[j].from}</span>
+                            <span class="para"> para</span>
+                            <span class="nome"> Todos:</span>
+                            <span class="texto"> ${resposta.data[j].text}</span></div> `;
+
+                        document.querySelector(`.mensagens`).scrollIntoView(false)
+
                     }
+
                 } else if (resposta.data[j].to === nome.name || resposta.data[j].from === nome.name) {
+
                     document.querySelector(`.mensagens`).innerHTML += `
-                <div class="privado">${resposta.data[j].text}</div> `;
+        
+                        <div class="privado"><span class="time">(${resposta.data[j].time})</span>
+                        <span class="nome"> ${resposta.data[j].from}</span>
+                        <span class="para"> reservadamente para</span>
+                        <span class="nome"> ${resposta.data[j].to}:</span>
+                        <span class="texto"> ${resposta.data[j].text}</span></div> `;
+
+                    document.querySelector(`.mensagens`).scrollIntoView(false)
                 }
 
             }
@@ -98,14 +126,17 @@ function printMessages(resposta) {
 }
 
 function enviarMensagem() {
-    let msg = document.querySelector(`.mensagem`).value;
+    let msg = document.querySelector(`.mensagem`)
 
     const message = {
         from: nome.name,
         to: `Todos`,
-        text: msg,
+        text: msg.value,
         type: `message`
     }
+
+    msg.value = "";
+
     const promisePost3 = axios.post(`https://mock-api.driven.com.br/api/v4/uol/messages`, message);
 
 
@@ -119,3 +150,10 @@ function retornoPost3(resposta) {
 function retornoErro3(resposta) {
 }
 
+var input = document.querySelector(".mensagem");
+input.addEventListener("keyup", function (event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        document.querySelector(".enviar").click();
+    }
+});
