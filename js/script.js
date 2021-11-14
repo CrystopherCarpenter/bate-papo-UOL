@@ -1,26 +1,47 @@
 
 let intervalStatus;
 let intervalMessages;
-let msgRef;                     //Mensagem de referência para a impressão das mensagens na tela
+let msgRef;
+let nome;                    //Mensagem de referência para a impressão das mensagens na tela
 
-//function acessar() {
-const nome = { name: `Cansei desses bugs já` };
-//var nome = { name: `${document.querySelector(`.inserir-nome`).value}` };
+function acessar() {
 
-const promiseNome = axios.post(`https://mock-api.driven.com.br/api/v4/uol/participants`, nome);
+    nome = { name: `${document.querySelector(`.inserir-nome`).value}` };
 
-promiseNome.then(Acesso);
-promiseNome.catch(erroAcesso);
-//}
+    const promiseNome = axios.post(`https://mock-api.driven.com.br/api/v4/uol/participants`, nome);
+
+    document.querySelector(`.entrar`).classList.add(`esconder`);
+    document.querySelector(`.entrando`).classList.remove(`esconder`);
+
+
+    setTimeout(promiseNome.then(Acesso), 5000);
+    promiseNome.catch(erroAcesso);
+}
+
+const inputNome = document.querySelector(".inserir-nome");
+inputNome.addEventListener("keyup", function (event) {
+    if (event.keyCode === 13) {
+        event.preventDefault();
+        document.querySelector(".buttonEntrar").click();
+    }
+});
 
 function Acesso(resposta) {
+
+    document.querySelector(`.tela-acesso`).classList.add(`esconder`);
+
     getMsgRef();
+
+    messages();
 
     setTimeout(intervals, 250);
 }
 
 function erroAcesso(resposta) {
-    console.log(resposta.response.status);
+    document.querySelector(`.entrando`).classList.add(`esconder`);
+    document.querySelector(`.entrar`).classList.remove(`esconder`);
+
+    alert(`O nome já está em uso, por favor escolha outro`);
 
 }
 
@@ -82,7 +103,7 @@ function printMessages(resposta) {
 
                         document.querySelector(`.mensagens`).innerHTML += `
         
-                            <div class="status"><div><span class="time">(${resposta.data[j].time})</span>
+                            <div class="status" data-identifier="message"><div><span class="time">(${resposta.data[j].time})</span>
                             <span class="nome"> ${resposta.data[j].from}</span></div>
                             <span class="texto"> ${resposta.data[j].text}</span></div>`;
 
@@ -92,7 +113,7 @@ function printMessages(resposta) {
 
                         document.querySelector(`.mensagens`).innerHTML += `
 
-                            <div class="todos"><div><span class="time">(${resposta.data[j].time})</span>
+                            <div class="todos" data-identifier="message"><div><span class="time">(${resposta.data[j].time})</span>
                             <span class="nome"> ${resposta.data[j].from}</span></div>
                             <span class="para"> para</span>
                             <span class="nome"> Todos:</span>
@@ -106,7 +127,7 @@ function printMessages(resposta) {
 
                     document.querySelector(`.mensagens`).innerHTML += `
         
-                        <div class="privado"><div><span class="time">(${resposta.data[j].time})</span>
+                        <div class="privado" data-identifier="message"><div><span class="time">(${resposta.data[j].time})</span>
                         <span class="nome"> ${resposta.data[j].from}</span></div>
                         <span class="para"> reservadamente para</span>
                         <span class="nome"> ${resposta.data[j].to}:</span>
@@ -137,21 +158,23 @@ function enviarMensagem() {
 
     msg.value = "";
 
-    const promisePost3 = axios.post(`https://mock-api.driven.com.br/api/v4/uol/messages`, message);
+    const promiseMensagem = axios.post(`https://mock-api.driven.com.br/api/v4/uol/messages`, message);
 
 
-    promisePost3.then(retornoPost3);
-    promisePost3.catch(retornoErro3);
+    promiseMensagem.then(retornoMensagem);
+    promiseMensagem.catch(retornoErroMensagem);
 
 }
 
-function retornoPost3(resposta) {
+function retornoMensagem(resposta) {
+    messages();
 }
-function retornoErro3(resposta) {
+function retornoErroMensagem(resposta) {
+    window.location.reload()
 }
 
-var input = document.querySelector(".mensagem");
-input.addEventListener("keyup", function (event) {
+const inputMensagem = document.querySelector(".mensagem");
+inputMensagem.addEventListener("keyup", function (event) {
     if (event.keyCode === 13) {
         event.preventDefault();
         document.querySelector(".enviar").click();

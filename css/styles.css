@@ -5,7 +5,104 @@ body{
     background-color: #e5e5e5;
     display: flex;
     align-items: flex-start;
+}
+
+.tela-acesso{
     position: relative;
+    
+    height: 100%;
+    width: 100%;
+
+    position: fixed;
+
+    z-index: 3;
+
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+
+    background-color: #FFFFFF;
+
+}
+
+.tela-acesso img{
+    width: 130px;
+
+    position: absolute;
+    top: 18%;
+    left: calc(50%-130px/2);
+}
+
+.entrar .entrando{
+    display: flex;
+    flex-direction: column;
+
+    justify-content: center;
+    align-items: center;
+    
+}
+
+.inserir-nome{
+    all: unset;
+
+    font-weight: normal;
+    font-size: 18px;
+
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #AEAEAE;
+
+    width: 261px;
+    height: 54px;
+
+    background: #FFFFFF;
+    border: 1px solid #D7D7D7;
+
+    border-radius: 4px;
+
+    margin-bottom: 15px;
+}
+
+.buttonEntrar{
+    all:unset;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-left: 76px;
+
+    width: 109px;
+    height: 45px;
+
+    background: #E7E7E7;
+
+    border-radius: 9px;
+
+    font-weight: normal;
+    font-size: 18px;
+
+    color: #696969;
+}
+
+.entrando img{
+    width: 90px;
+    position: absolute;
+    top: 38%;
+    left: calc(50% - 45px);
+}
+
+.entrando p{
+    font-weight: normal;
+    font-size: 18px;
+    color: #000;
+
+    padding-left: 5px;
+    padding-top: 25px;
 }
 
 header{
@@ -48,13 +145,6 @@ header ion-icon{
 
     padding-bottom: 84px;
     padding-top: 84px;
-
-     -ms-overflow-style: none;
-    scrollbar-width: none;
-}
-
-.mensagens::-webkit-scrollbar {
-    display: none;
 }
 
 .time, .nome, .texto, .para{
@@ -74,10 +164,11 @@ header ion-icon{
     margin: auto 5px;
 }
 
-.nome{
+.nome{ 
     overflow: hidden;
-    text-overflow: ellipsis; 
+    text-overflow: ellipsis;  
 
+    max-width: 150px;
     font-weight: bold;
 }
 
@@ -88,8 +179,6 @@ header ion-icon{
 .todos, .status, .privado{
     display: flex;
     flex-wrap: wrap;
-
-    overflow: wrap;
 
     justify-content: flex-start;
     align-items: center;
@@ -102,12 +191,7 @@ header ion-icon{
 }
 
 .status div, .todos div, .privado div{
-    display: flex;
-    flex-wrap: nowrap;
     align-items: center;
-
-        overflow: hidden;
-    text-overflow: ellipsis; 
 }
 
 .todos{
@@ -149,8 +233,9 @@ header ion-icon{
     margin-right: 18px;
 }
 
-.enviar:hover{
+.enviar:hover, .buttonEntrar:hover{
     cursor: pointer;
+    filter:brightness(0.95);
 }
 
 footer div{
@@ -180,9 +265,4 @@ footer{
 
 .esconder{
     display: none;
-}
-
-.tela-acesso{
-    width: 100%;
-    height: 100%;
 }

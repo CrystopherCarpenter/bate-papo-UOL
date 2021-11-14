@@ -22,13 +22,19 @@
 </head>
 
 <body>
-    <div class="tela-acesso esconder">
+    <div class="tela-acesso">
 
         <img src="assets/logo.png" />
 
-        <input type="text" placeholder="Digite seu nome" id="entrar" />
+        <div class="entrar"><input class="inserir-nome" type="text" placeholder="Digite seu nome" id="entrar" />
 
-        <button class="entrar">Entrar</button>
+            <button class="buttonEntrar" onclick="acessar()">Entrar</button>
+
+        </div>
+        <div class="entrando esconder">
+            <img src="assets/entrando.png" />
+            <p>Entrando...</p>
+        </div>
     </div>
 
     <header>
@@ -49,7 +55,7 @@
             </p>
 
         </div>
-        <button class="enviar" onclick="enviarMensagem()">
+        <button class="enviar" onclick="enviarMensagem()" data-identifier="send-message">
             <ion-icon name="paper-plane-outline"></ion-icon>
         </button>
     </footer>
