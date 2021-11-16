@@ -1,3 +1,11 @@
+ *{  
+    -ms-overflow-style: none;   /* IE e Edge */
+    scrollbar-width: none         /* Firefox */
+}
+
+*::-webkit-scrollbar {
+    display: none;                /* Chrome, Safari e Opera */
+}
 body{ 
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
@@ -6,7 +14,6 @@ body{
     display: flex;
     align-items: flex-start;
 }
-
 .tela-acesso{
     position: relative;
     
@@ -49,6 +56,7 @@ body{
 
     font-weight: normal;
     font-size: 18px;
+    z-index: 5;
 
     display: flex;
     align-items: center;
@@ -180,6 +188,8 @@ header ion-icon{
     display: flex;
     flex-wrap: wrap;
 
+    overflow:scroll;
+
     justify-content: flex-start;
     align-items: center;
 
@@ -233,7 +243,7 @@ header ion-icon{
     margin-right: 18px;
 }
 
-.enviar:hover, .buttonEntrar:hover{
+.enviar:hover, .buttonEntrar:hover, header div:hover{
     cursor: pointer;
     filter:brightness(0.95);
 }
@@ -243,7 +253,14 @@ footer div{
     flex-direction: column;
     justify-content: center;
 }
+footer div p{
+    font-size: 14px;
+    font-weight: 300;
+    margin-left: 18px;
+    margin-bottom: 10px;
 
+    color: #505050;
+}
 footer{
     display: flex;
     flex-wrap: nowrap;
@@ -265,4 +282,118 @@ footer{
 
 .esconder{
     display: none;
+}
+
+.fundo{
+    all:unset;
+    display: none;
+
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100vw;
+    height: 100vw;
+    background-color: #000;
+    opacity: 0;
+
+    z-index: 6;
+}
+
+.aparecer-fundo{
+    display: block;
+    opacity: 0.6;
+}
+
+.menu-lateral{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+
+    position:fixed;
+    top:0;
+    right: 0;
+
+    z-index: 10;
+
+    opacity: 0;
+
+    width: 0;
+    height: 100vw;
+
+    overflow: scroll;
+
+    background-color: #fff;
+
+    transition: all 0.1s ease-in-out;
+}
+
+.aparecer-menu{
+    width: 259px;
+    opacity: 1;
+
+}
+
+.contatos, .visibilidade{
+    font-weight: bold;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #000000;
+}
+
+.contatos{
+    height: 84px;
+}
+
+.visibilidade{
+    height: 66px;
+}
+
+.menu-lateral ul {
+    width: 259px;
+}
+
+.menu-lateral ul div{
+    height: 36px;
+    width: 200px;
+    padding: 0 20px ;
+    font-weight: normal;
+    font-size: 16px;
+
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: flex-start;
+
+    position: relative;
+    color: #000000;
+}
+
+.menu-lateral ul div:hover{
+    cursor:default;
+}
+
+.icon-lock, .icon-contatos, .icon-todos {
+    font-size: 22px;
+    color: #000;
+    margin-right: 8px;
+}
+
+.check{
+    opacity: 0;
+    font-size: 18px;
+    font-weight: bold;
+    color:#28bb25;
+
+    position: absolute;
+    right: 0;
+    top: calc(50% - 9px);
+}
+
+.menu-lateral ul div.contato-escolhido .check, .menu-lateral ul div.visibilidade-escolhida .check{
+    opacity: 1;
 }

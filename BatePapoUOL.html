@@ -26,7 +26,8 @@
 
         <img src="assets/logo.png" />
 
-        <div class="entrar"><input class="inserir-nome" type="text" placeholder="Digite seu nome" id="entrar" />
+        <div class="entrar"><input class="inserir-nome" type="text" placeholder="Digite seu nome" id="entrar"
+                data-identifier="enter-name" />
 
             <button class="buttonEntrar" onclick="acessar()">Entrar</button>
 
@@ -39,21 +40,45 @@
 
     <header>
         <img src="assets/logo.png" />
-        <ion-icon name="people-sharp"></ion-icon>
+        <div onclick="aparecer()">
+            <ion-icon name="people-sharp"></ion-icon>
+        </div>
 
     </header>
 
     <main class="mensagens"></main>
 
+    <button class="fundo" onclick="aparecer()"></button>
+    <div class="menu-lateral">
+        <h1 class="contatos">Escolha um contato <br />para enviar mensagem:</h1>
+        <ul class="lista-contatos">
+            <div class="contato-escolhido" onclick="contatoEscolhido(this)">
+                <ion-icon class="icon-todos" name="people-sharp"></ion-icon>
+                <p>Todos</p>
+                <ion-icon name="checkmark-outline" class="check"></ion-icon>
+            </div>
+        </ul>
+
+        <h1 class="visibilidade">Escolha visibilidade</h1>
+
+        <ul>
+            <div class="visibilidade-escolhida" onclick="visibilidadeEscolhida(this, `message`)"
+                data-identifier="visibility">
+                <ion-icon class="icon-lock" name="lock-open"></ion-icon>
+                <p>Público</p>
+                <ion-icon name="checkmark-outline" class="check"></ion-icon>
+            </div>
+            <div onclick="visibilidadeEscolhida(this, `private_message`)" data-identifier="visibility">
+                <ion-icon class="icon-lock" name="lock-closed"></ion-icon>
+                <p>Reservadamente</p>
+                <ion-icon name="checkmark-outline" class="check"></ion-icon>
+            </div>
+        </ul>
+    </div>
+
     <footer>
         <div><input class="mensagem" placeholder="Escreva aqui..." />
-            <p class="esconder">nome da gatinha que quer TC<ion-icon name="person-circle"></ion-icon>
-
-                <ion-icon name="lock-open"></ion-icon>
-
-                <ion-icon name="lock-closed"></ion-icon>
-            </p>
-
+            <p></p>
         </div>
         <button class="enviar" onclick="enviarMensagem()" data-identifier="send-message">
             <ion-icon name="paper-plane-outline"></ion-icon>
